@@ -2,7 +2,7 @@
 name = "pizza-analysis-finnish"
 version = "0.1.0"
 edition = "2021"
-description = "Finnish language analysis components for Pizza search engine"
+description = "Finnish text analysis plugin for INFINI Pizza"
 license = "MIT"
 
 [features]
