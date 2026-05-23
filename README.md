@@ -1,48 +1,62 @@
-# pizza-analysis-finnish
+<div align="center">
 
-Finnish language analysis with multi-step light stemmer and stop words.
+# 🇫🇮 pizza-analysis-finnish
 
-Part of the [Pizza](https://pizza.rs) search engine.
+**Finnish text analysis plugin for [INFINI Pizza](https://pizza.rs)**
+
+[![Crate](https://img.shields.io/badge/crate-pizza--analysis--finnish-blue)](https://github.com/pizza-rs/analysis-finnish)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+</div>
+
+---
+
+## Overview
+
+Finnish language analysis with a light stemmer designed for Finnish agglutinative
+morphology. Finnish has 15 noun cases and extensive suffixation, making light stemming
+preferable to avoid over-reduction.
 
 ## Components
 
-| Name | Type | Description |
-|------|------|-------------|
-| `finnish_stem` | Token Filter | Finnish 3-step light stemmer: possessive → case → derivational + vowel normalization |
-| `finnish_stop` | Token Filter | Finnish stop words filter (67 words) |
-| `finnish` | Analyzer | Full pipeline: lowercase → stop → stem |
+| Type | Name | Description |
+|:-----|:-----|:------------|
+| TokenFilter | `finnish_light_stem` | Light stemmer for Finnish (suffix stripping) |
+| TokenFilter | `finnish_stop` | Finnish stop words (67 entries) |
+| Analyzer | `finnish` | Full pipeline: lowercase → light_stem → stop |
 
-## Usage
+## Example
 
-### Built-in Analyzer
+```rust
+use pizza_engine::analysis::AnalysisFactory;
 
-```json
-{
-  "analyzer": {
-    "type": "finnish"
-  }
-}
+let mut factory = AnalysisFactory::new();
+pizza_analysis_finnish::register_all(&mut factory);
+
+let analyzer = factory.get_analyzer("finnish").unwrap();
+// "taloissa" (in houses) → "talo" (house)
 ```
 
-### Custom Pipeline
+## Installation
 
-```json
-{
-  "analyzer": {
-    "type": "custom",
-    "tokenizer": "standard",
-    "filter": ["finnish_stem", "finnish_stop"]
-  }
-}
+```toml
+[dependencies]
+pizza-analysis-finnish = "0.1"
+```
+
+Or via `pizza-analysis-all`:
+
+```toml
+[dependencies]
+pizza-analysis-all = { version = "0.1", features = ["finnish"] }
 ```
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT
 
-## Related Crates
+---
 
-- [analysis-core](https://github.com/pizza-rs/analysis-core) — Core analysis components and pipeline
-- [analysis-icu](https://github.com/pizza-rs/analysis-icu) — ICU Unicode normalization and tokenization
-- [analysis-english](https://github.com/pizza-rs/analysis-english) — English analysis
-- [analysis-all](https://github.com/pizza-rs/analysis-all) — Meta-crate registering all analyzers
+<div align="center">
+<sub>Part of the <a href="https://pizza.rs">INFINI Pizza</a> ecosystem</sub>
+</div>
