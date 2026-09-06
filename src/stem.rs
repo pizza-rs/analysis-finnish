@@ -49,9 +49,7 @@ fn stem_finnish(word: &str) -> String {
 }
 
 fn step1_possessive(word: &str) -> String {
-    let suffixes: &[&str] = &[
-        "mme", "nne", "nsa", "nsä", "ni", "si",
-    ];
+    let suffixes: &[&str] = &["mme", "nne", "nsa", "nsä", "ni", "si"];
     for suffix in suffixes {
         if word.ends_with(suffix) {
             let stem_len = word.len() - suffix.len();
@@ -66,20 +64,10 @@ fn step1_possessive(word: &str) -> String {
 fn step2_case(word: &str) -> String {
     let suffixes: &[&str] = &[
         // Longest first
-        "ista", "istä", "issa", "issä",
-        "illa", "illä", "ilta", "iltä",
-        "itta", "ittä",
-        "iden", "iden",
-        "seen",
-        "lle", "lta", "ltä", "sta", "stä", "ssa", "ssä",
-        "ina", "inä", "ita", "itä",
-        "lla", "llä",
-        "ksi",
-        "ien", "den", "ten",
-        "eet",
-        "ia", "iä", "ta", "tä", "na", "nä",
-        "in", "en", "an", "on", "un", "yn", "ön", "än",
-        "it", "at", "et", "ut", "yt", "öt", "ät",
+        "ista", "istä", "issa", "issä", "illa", "illä", "ilta", "iltä", "itta", "ittä", "iden",
+        "iden", "seen", "lle", "lta", "ltä", "sta", "stä", "ssa", "ssä", "ina", "inä", "ita",
+        "itä", "lla", "llä", "ksi", "ien", "den", "ten", "eet", "ia", "iä", "ta", "tä", "na", "nä",
+        "in", "en", "an", "on", "un", "yn", "ön", "än", "it", "at", "et", "ut", "yt", "öt", "ät",
         "ä", "a", "t", "n",
     ];
 
@@ -96,16 +84,8 @@ fn step2_case(word: &str) -> String {
 
 fn step3_derivational(word: &str) -> String {
     let suffixes: &[&str] = &[
-        "llinen", "lliset",
-        "lainen", "läinen",
-        "inen", "iset",
-        "nnut", "nnyt",
-        "nut", "nyt", "neet",
-        "vat", "vät",
-        "isi",
-        "ton", "tön",
-        "ttain",
-        "us", "ys", "ös",
+        "llinen", "lliset", "lainen", "läinen", "inen", "iset", "nnut", "nnyt", "nut", "nyt",
+        "neet", "vat", "vät", "isi", "ton", "tön", "ttain", "us", "ys", "ös",
     ];
 
     for suffix in suffixes {

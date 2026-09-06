@@ -9,7 +9,10 @@ use crate::stem::FinnishLightStemFilter;
 use crate::stop::FinnishStopFilter;
 
 pub fn register_all(factory: &mut AnalysisFactory) {
-    factory.register_token_filter("finnish_light_stem", Box::new(FinnishLightStemFilter::new()));
+    factory.register_token_filter(
+        "finnish_light_stem",
+        Box::new(FinnishLightStemFilter::new()),
+    );
     factory.register_token_filter("finnish_stop", Box::new(FinnishStopFilter::new()));
 
     let filters: Vec<Box<dyn TokenFilter>> = vec![
